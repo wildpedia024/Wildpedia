@@ -200,12 +200,18 @@
         </ul>
 
  <div class="video-section" id="campaign-video">
-            <div class="video-card">
-                <button id="unmute-btn">🔊 Unmute</button>
-                <video id="myVideo" autoplay muted loop playsinline>
-                    <source src="earthhour.mp4" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+<div class="video-card">
+        <video id="myVideo" playsinline>
+            <source src="earthhour.mp4" type="video/mp4">
+            Your browser does not support video.
+        </video>
+
+        <div class="controls">
+            <button id="playBtn">▶️ Play</button>
+            <button id="muteBtn">🔊 Unmute</button>
+        </div>
+    </div>
+</div>
                 <div class="video-info">
                     <h3>Featured Campaign: Earth Hour</h3>
                     <p>Witness the global impact of Earth Hour. This video highlights how simple actions can lead to massive environmental awareness across the globe. Click the <b>Unmute</b> button to hear the audio.</p>
@@ -216,34 +222,30 @@
 
     <script>
 
-        const btn = document.getElementById("theme-toggle");
-        const body = document.body;
+const video = document.getElementById("myVideo");
+const playBtn = document.getElementById("playBtn");
+const muteBtn = document.getElementById("muteBtn");
 
-        btn.addEventListener("click", function() {
-            if (body.getAttribute("data-theme") === "dark") {
-                body.removeAttribute("data-theme");
-            } else {
-                body.setAttribute("data-theme", "dark");
-            }
-        });
+video.muted = true;
 
-        const video = document.getElementById("myVideo");
-        const unmuteBtn = document.getElementById("unmute-btn");
-
-       unmuteBtn.addEventListener("click", function() {
-    if (video.muted) {
-        video.muted = false;
+playBtn.onclick = () => {
+    if (video.paused) {
         video.play();
-        unmuteBtn.textContent = "🔇 Mute";
+        playBtn.textContent = "⏸️ Pause";
     } else {
-        video.muted = true;
-        unmuteBtn.textContent = "🔊 Unmute";
+        video.pause();
+        playBtn.textContent = "▶️ Play";
     }
-});
+};
+
+muteBtn.onclick = () => {
+    video.muted = !video.muted;
+    muteBtn.textContent = video.muted ? "🔊 Unmute" : "🔇 Mute";
+};
 
     </script>
 
 </body>
-
 </html>
+
 
