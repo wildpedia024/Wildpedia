@@ -1,0 +1,79 @@
+:root {
+    --primary-green: #006400;
+    --wwf-red: #d21034;
+    --link-blue: #0645ad;
+    --bg-overlay: rgba(255, 255, 255, 0.9);
+    --dark-bg: rgba(30, 30, 30, 0.9);
+}
+
+#progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 9999;
+}
+
+#progress-bar {
+    height: 100%;
+    width: 0%;
+    background: var(--wwf-red);
+    transition: width 0.1s ease;
+}
+
+header h1 {
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 5px rgba(255,255,255,0.5); }
+    to { text-shadow: 0 0 15px var(--primary-green), 0 0 5px #7cbcff; }
+}
+
+.sidebar a {
+    transition: all 0.3s ease;
+    padding: 8px 12px;
+    border-radius: 6px;
+    border-left: 3px solid transparent;
+}
+
+.sidebar a:hover {
+    background: rgba(6, 69, 173, 0.08);
+    border-left: 3px solid var(--link-blue);
+    transform: translateX(8px);
+    text-decoration: none;
+}
+
+#backToTop {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    padding: 12px 18px;
+    background: var(--primary-green);
+    color: white;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    display: none; /* Muncul bila skrol */
+    z-index: 1000;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+#backToTop:hover {
+    background: var(--wwf-red);
+    transform: scale(1.1);
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+::-webkit-scrollbar-thumb {
+    background: var(--primary-green);
+    border-radius: 5px;
+}
