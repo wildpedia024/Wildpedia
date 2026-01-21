@@ -373,4 +373,141 @@ footer {
     }
 }
 
+.content::before,
+.sidebar::before,
+.infobox::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        120deg,
+        transparent 0%,
+        rgba(255,255,255,0.08) 50%,
+        transparent 100%
+    );
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+}
+
+.content:hover::before,
+.sidebar:hover::before,
+.infobox:hover::before {
+    opacity: 1;
+}
+
+/* Slight animated glow on buttons */
+button, .dark-toggle, #backToTop {
+    position: relative;
+    overflow: hidden;
+}
+
+button::after,
+.dark-toggle::after,
+#backToTop::after {
+    content: "";
+    position: absolute;
+    inset: -50%;
+    background: radial-gradient(circle, rgba(255,255,255,0.3), transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+button:hover::after,
+.dark-toggle:hover::after,
+#backToTop:hover::after {
+    opacity: 1;
+}
+
+/* Floating animation for important sections */
+.content {
+    animation: slowFloat 12s ease-in-out infinite;
+}
+
+@keyframes slowFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-3px); }
+}
+
+/* Animated gradient border for infobox */
+.infobox {
+    position: relative;
+}
+
+.infobox::after {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    background: linear-gradient(45deg, var(--primary-green), var(--wwf-red), var(--link-blue));
+    z-index: -1;
+    filter: blur(8px);
+    opacity: 0.25;
+}
+
+/* Smooth fade-in for sections when scrolling */
+.content, .infobox, .sidebar {
+    animation: softAppear 1s ease both;
+}
+
+@keyframes softAppear {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* More elegant headings */
+h1, h2, h3 {
+    letter-spacing: 0.5px;
+}
+
+/* Tiny animated dots in background for atmosphere */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background-image: radial-gradient(rgba(0,0,0,0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+    pointer-events: none;
+    z-index: -2;
+}
+
+/* Sidebar link "magnetic" effect */
+.sidebar a:hover {
+    letter-spacing: 0.5px;
+}
+
+/* Subtle zoom on images inside content */
+.content img {
+    transition: transform 0.6s ease;
+}
+
+.content img:hover {
+    transform: scale(1.02);
+}
+
+/* Fancy divider style */
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(to right, transparent, var(--primary-green), transparent);
+    margin: 30px 0;
+}
+
+/* Soft animation for backToTop even when idle */
+#backToTop {
+    animation: gentlePulse 4s infinite;
+}
+
+@keyframes gentlePulse {
+    0%, 100% { box-shadow: 0 0 0 rgba(0,0,0,0.2); }
+    50% { box-shadow: 0 0 20px rgba(0,0,0,0.2); }
+}
+
+
+
 
