@@ -1,6 +1,6 @@
-<!DOCTYPE html>
 <html lang="ms">
 <head>
+<link rel="stylesheet" href="style.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Main Page</title>
@@ -125,6 +125,8 @@
     </style>
 </head>
 <body>
+<div id="progress-container"><div id="progress-bar"></div></div>
+    <button id="backToTop" onclick="scrollToTop()">↑ Top</button>
 
 <audio id="bgMusic" loop>
     <source src="burung.mp3" type="audio/mpeg">
@@ -154,53 +156,7 @@
         </div>
     </div>
 
-<script>
-    // 1. FUNGSI TARIKH & MASA (BAHASA INGGERIS & KOTAK)
-    function updateDateTime() {
-      const dt = new Date();
-      // Ditukar kepada 'en-US' untuk Bahasa Inggeris
-      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-      const dateStr = dt.toLocaleDateString('en-US', options);
-      const timeStr = dt.toLocaleTimeString('en-US', {hour12: false});
-      
-      document.getElementById('datetime').innerHTML = `${dateStr} | ${timeStr}`;
-    }
-
-    setInterval(updateDateTime, 1000);
-    updateDateTime();
-
-    // 2. FUNGSI MUZIK
-    function playMusic() {
-        var audio = document.getElementById("bgMusic");
-        var promise = audio.play();
-
-        if (promise !== undefined) {
-            promise.then(_ => {
-                console.log("Muzik sedang dimainkan.");
-            }).catch(error => {
-                console.log("Klik diperlukan untuk muzik.");
-            });
-        }
-    }
-
-    document.body.addEventListener('click', function() {
-        playMusic();
-    }, { once: true });
-
-    // 3. FUNGSI CARIAN
-    function prosesCarian() {
-        playMusic(); 
-        
-        const carian = document.getElementById('userInput').value.toLowerCase();
-        if (carian.includes("wwf") || carian === "") {
-            setTimeout(function() {
-                window.location.href = "index.html";
-            }, 500);
-        } else {
-            alert("Sila taip 'WWF'.");
-        }
-    }
-</script>
+   <script src="script.js"></script></script>
    
 </body>
 </html>
