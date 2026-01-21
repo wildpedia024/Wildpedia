@@ -184,3 +184,88 @@ footer::before {
     bottom: -20px;
     right: 10px;
 }
+
+@keyframes floating {
+    0% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-15px) rotate(2deg); }
+    100% { transform: translateY(0px) rotate(0deg); }
+}
+
+.infobox img {
+    animation: floating 4s ease-in-out infinite;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    border: 3px solid white;
+}
+
+.content {
+    position: relative;
+    overflow: hidden;
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+}
+::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary-green), var(--wwf-red));
+    border-radius: 10px;
+    border: 3px solid #f0f0f0;
+}
+
+.dark-toggle {
+    background: linear-gradient(135deg, #ffffff 0%, #f1f1f1 100%);
+    border: none;
+    box-shadow: 5px 5px 15px #d1d1d1, -5px -5px 15px #ffffff;
+    padding: 12px 20px !important;
+    font-weight: 600;
+    letter-spacing: 1px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.dark-toggle:active {
+    box-shadow: inset 5px 5px 10px #d1d1d1, inset -5px -5px 10px #ffffff;
+    transform: scale(0.95);
+}
+
+.sidebar a {
+    position: relative;
+    z-index: 1;
+}
+
+.sidebar a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 0;
+    height: 2px;
+    background: var(--wwf-red);
+    transition: width 0.4s ease;
+}
+
+.sidebar a:hover::after {
+    width: 100%;
+}
+
+@media (max-width: 1024px) {
+    .container { grid-template-columns: 200px 1fr; gap: 10px; }
+}
+
+@media (max-width: 480px) {
+    header h1 { font-size: 20px; }
+    .content { padding: 15px; }
+    .infobox { width: 100%; float: none; margin: 10px 0; }
+}
+
+.dark-overlay {
+    background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
+    pointer-events: none;
+}
