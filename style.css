@@ -269,3 +269,108 @@ footer::before {
     background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.6) 100%);
     pointer-events: none;
 }
+
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Nice text selection */
+::selection {
+    background: var(--primary-green);
+    color: white;
+}
+
+/* Better focus outline for accessibility */
+a:focus, button:focus {
+    outline: 2px solid var(--wwf-red);
+    outline-offset: 3px;
+}
+
+/* Soft hover effect for content cards */
+.content:hover,
+.sidebar:hover,
+.infobox:hover {
+    transform: translateY(-2px);
+}
+
+/* Subtle animated gradient overlay */
+body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(255,255,255,0.05), transparent 60%);
+    pointer-events: none;
+    z-index: -1;
+}
+
+/* Header slight floating feel */
+header {
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+/* Footer polish */
+footer {
+    letter-spacing: 0.5px;
+}
+
+/* Animated underline on links inside content */
+.content a {
+    position: relative;
+    text-decoration: none;
+}
+
+.content a::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -2px;
+    height: 2px;
+    width: 0;
+    background: var(--wwf-red);
+    transition: width 0.3s ease;
+}
+
+.content a:hover::after {
+    width: 100%;
+}
+
+/* Gentle pulse on popup text to attract attention */
+#music-popup .popup-content {
+    animation: fadeInBounce 1s ease, pulse 2s infinite ease-in-out;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+}
+
+/* Reduce animation if user prefers reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+}
+
+/* Print friendly layout */
+@media print {
+    body {
+        background: white;
+        color: black;
+    }
+
+    .sidebar,
+    .dark-toggle,
+    #music-popup,
+    #backToTop {
+        display: none !important;
+    }
+
+    .content {
+        box-shadow: none;
+        border: none;
+    }
+}
+
+
