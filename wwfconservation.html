@@ -220,32 +220,40 @@
         </div>
     </div>
 
-    <script>
+<script>
+    // 1. Logik Dark Mode
+    const themeToggle = document.getElementById("theme-toggle");
+    themeToggle.onclick = () => {
+        if (document.documentElement.hasAttribute("data-theme")) {
+            document.documentElement.removeAttribute("data-theme");
+        } else {
+            document.documentElement.setAttribute("data-theme", "dark");
+        }
+    };
 
-const video = document.getElementById("myVideo");
-const playBtn = document.getElementById("playBtn");
-const muteBtn = document.getElementById("muteBtn");
+    const video = document.getElementById("myVideo");
+    const playBtn = document.getElementById("playBtn");
+    const muteBtn = document.getElementById("muteBtn");
 
-video.muted = true;
+    video.muted = true;
+    playBtn.onclick = () => {
+        if (video.paused) {
+            video.play();
+            playBtn.textContent = "⏸️ Pause";
+        } else {
+            video.pause();
+            playBtn.textContent = "▶️ Play";
+        }
+    };
 
-playBtn.onclick = () => {
-    if (video.paused) {
-        video.play();
-        playBtn.textContent = "⏸️ Pause";
-    } else {
-        video.pause();
-        playBtn.textContent = "▶️ Play";
-    }
-};
-
-muteBtn.onclick = () => {
-    video.muted = !video.muted;
-    muteBtn.textContent = video.muted ? "🔊 Unmute" : "🔇 Mute";
-};
-
-    </script>
+    muteBtn.onclick = () => {
+        video.muted = !video.muted;
+        muteBtn.textContent = video.muted ? "🔊 Unmute" : "🔇 Mute";
+    };
+</script>
 
 </body>
 </html>
+
 
 
